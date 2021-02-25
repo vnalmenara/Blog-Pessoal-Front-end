@@ -20,6 +20,13 @@ export class EntrarComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0,0)
+    let url = this.router.url
+    if (url == '/entrar') {
+      environment.token = ''
+      environment.nome = ''
+      environment.foto = ''
+      environment.id = 0
+    }
   }
 
   entrar(){
@@ -31,8 +38,7 @@ export class EntrarComponent implements OnInit {
       environment.foto = this.userLogin.foto
       environment.id = this.userLogin.id
       
-      this.router.navigate(['/inicio'])
-    }, erro => {
+      this.router.navigate(['/inicio'])}, erro => {
       if(erro.status == 500){
         alert('Usuário ou senha estão incorretos!')
       }
